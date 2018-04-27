@@ -38,10 +38,8 @@ def add_post():
 def my_blog():
 
     blog = Blog.query.filter_by().all()
-    entry = Blog.query.filter_by(title=True).all()
-    post = Blog.query.filter_by(body=True).all()
 
-    return render_template('blog.html', blog=blog, entry=entry, post=post)
+    return render_template('blog.html', blog=blog)
         
 @app.route('/', methods=['POST', 'GET'])
 def index():

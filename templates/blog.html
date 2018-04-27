@@ -1,18 +1,12 @@
 {% extends "base.html" %}
 {% block content%}
 
-
-
 <hr>
 
 {% if blog|length == 0 %}
 <p><h2>No posts yet</h2></p>
 
-
-
-
 {% endif %}
-
 
 <ul>
     {% for id in blog: %} 
@@ -26,8 +20,5 @@
 
 
 </hr>
-   
-
-
 
 {% endblock%}
