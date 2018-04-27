@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content%}
+
+
+
+
+<hr>
+<form action="/newpost" method="POST"  style = "display:inline-block;">
+    <label>
+        New Post Title:
+        <input type="text" name='post-title'>
+        
+    </label>
+    <label>
+        Type Post Here:
+        <input type="text" name='post-body'>
+    </label>
+     <input type="submit" value='Submit Post!'>
+
+</form>
+
+</hr>
+    
+
+
+{% endblock%}
