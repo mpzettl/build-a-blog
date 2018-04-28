@@ -1,24 +1,28 @@
-{% extends "base.html" %}
+
 {% block content%}
+
+
+
 
 <hr>
 
-{% if blog|length == 0 %}
-<p><h2>No posts yet</h2></p>
 
-{% endif %}
 
 <ul>
-    {% for id in blog: %} 
-        <h4><a href="/entry">{{ id.title }}</a></h4>
-        <p> {{ id.body }}</p>
-        <hr>
-    {% endfor %}
+    <h3>Single Post</h3>
+    
+        
+    <h4> {{ blog.title }}</h4>
+    <p> {{ blog.body }}</p>
+    <hr>
+    
     
     
 </ul>
 
 
 </hr>
-
+<label for="posts"> Return to main page:
+        <a href="/posts"><input type="submit"  value='Go Back!'></a>
+</label>
 {% endblock%}

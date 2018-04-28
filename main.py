@@ -12,6 +12,7 @@ class Blog(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120))
     body = db.Column(db.String(4000))
+    #submitted = db.Column(db.Boolean)
 
     def __init__(self, title, body):  
         self.title = title
@@ -27,30 +28,37 @@ def add_post():
         
         db.session.add(new_post)
         db.session.commit()
+        blog = Blog.query.all()
+        for last in blog:
+            last.id
+
         
-        return redirect('/entry')
+        return redirect('/blog?id={0}'.format(last.id))
         
     else:
 
         return render_template('newpost.html')
 
-@app.route('/blog', methods=['POST','GET'])
+@app.route('/posts', methods=['POST','GET'])
 def my_blog():
     if request.method == 'GET':
         blog = Blog.query.all()
 
-        return render_template('blog.html', blog=blog)
+        return render_template('posts.html', blog=blog)
     else:
-        return render_template('blog.html')
-@app.route('/entry', methods=['POST','GET'])
+        return render_template('posts.html')
+@app.route('/blog', methods=['POST','GET'])
 def single_entry():
     if request.method == 'GET':
         
-        entry = request.args.get('blog.title')
-        
-        return render_template('entry.html', entry=entry) 
+        entry = request.args.get('id')
+        blog = Blog.query.filter_by(id=entry).first()
+
+        return render_template('blog.html', blog=blog)
     else:
-        return redirect('/')  
+        
+        
+        return render_template('posts.html')  
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
