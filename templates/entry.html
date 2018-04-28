@@ -1,11 +1,15 @@
 
 {% block content%}
 
+
+
+
 <hr>
 
 
 
 <ul>
+    
     {% for id in blog: %} 
         <h4> {{ id.title }}</h4>
         <p> {{ id.body }}</p>
@@ -17,5 +21,7 @@
 
 
 </hr>
-
+<label for="blog"> Click to return to main page:
+        <a href="/blog"><input type="submit"  value='Return!'></a>
+</label>
 {% endblock%}

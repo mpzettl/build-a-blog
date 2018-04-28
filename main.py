@@ -28,7 +28,7 @@ def add_post():
         db.session.add(new_post)
         db.session.commit()
         
-        return redirect('/blog')
+        return redirect('/entry')
         
     else:
 
@@ -36,15 +36,22 @@ def add_post():
 
 @app.route('/blog', methods=['POST','GET'])
 def my_blog():
+    if request.method == 'GET':
+        blog = Blog.query.all()
 
-    blog = Blog.query.filter_by().all()
-
-    return render_template('blog.html', blog=blog)
+        return render_template('blog.html', blog=blog)
+    else:
+        return render_template('blog.html')
 @app.route('/entry', methods=['POST','GET'])
 def single_entry():
-    
-    entry = Blog.query.filter_by().all()
-    return render_template('entry.html', entry=entry)   
+    if request.method == 'GET':
+        
+        entry = request.args.get('blog.title')
+        
+        return render_template('entry.html', entry=entry) 
+    else:
+        return redirect('/')  
+
 @app.route('/', methods=['POST', 'GET'])
 def index():
     
