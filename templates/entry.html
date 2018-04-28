@@ -1,0 +1,21 @@
+
+{% block content%}
+
+<hr>
+
+
+
+<ul>
+    {% for id in blog: %} 
+        <h4> {{ id.title }}</h4>
+        <p> {{ id.body }}</p>
+        <hr>
+    {% endfor %}
+    
+    
+</ul>
+
+
+</hr>
+
+{% endblock%}

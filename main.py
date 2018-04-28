@@ -40,7 +40,11 @@ def my_blog():
     blog = Blog.query.filter_by().all()
 
     return render_template('blog.html', blog=blog)
-        
+@app.route('/entry', methods=['POST','GET'])
+def single_entry():
+    
+    entry = Blog.query.filter_by().all()
+    return render_template('entry.html', entry=entry)   
 @app.route('/', methods=['POST', 'GET'])
 def index():
     

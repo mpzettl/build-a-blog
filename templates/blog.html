@@ -10,7 +10,7 @@
 
 <ul>
     {% for id in blog: %} 
-        <h4> {{ id.title }}</h4>
+        <h4><a href="/entry">{{ id.title }}</a></h4>
         <p> {{ id.body }}</p>
         <hr>
     {% endfor %}
