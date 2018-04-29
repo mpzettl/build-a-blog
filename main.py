@@ -17,23 +17,42 @@ class Blog(db.Model):
     def __init__(self, title, body):  
         self.title = title
         self.body = body
+@app.route('/validation', methods=['POST', 'GET'])
+def validation():
+    
+    
+    validation_error = """Error: Please fill all fields""" 
+
+
+    return render_template('newpost.html', validation_error=validation_error)
+
+
+
 
 @app.route('/newpost', methods=['POST', 'GET'])
-def add_post():
-    
+def add_post():   
+
     if request.method == 'POST':
         title = request.form['post-title']
         body = request.form['post-body']
-        new_post = Blog(title, body)
         
-        db.session.add(new_post)
-        db.session.commit()
-        blog = Blog.query.all()
-        for last in blog:
-            last.id
 
-        
-        return redirect('/blog?id={0}'.format(last.id))
+
+        if title == "" or body == "":
+            validation_error = """Error: Please fill all fields"""
+            return render_template('newpost.html', validation_error=validation_error, title=title, body=body)
+
+        else:
+            new_post = Blog(title, body)
+            
+            db.session.add(new_post)
+            db.session.commit()
+            blog = Blog.query.all()
+            for last in blog:
+                last.id
+
+            
+            return redirect('/blog?id={0}'.format(last.id))
         
     else:
 
